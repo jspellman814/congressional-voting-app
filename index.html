@@ -47,7 +47,7 @@
 
 <div ng-controller="congressMemberController">
     <div class="member" ng-repeat="member in members | filter:memberID">
-        <!-- problem with ng repeats, could be with if statement, 587 loops PER member div -->
+        <!-- @todo: ng-repeat 587 loops PER member div -->
         <a ng-if="score.node.member_id === member.id" ng-repeat="score in scorecards" href="{{score.node.url}}">
             <span class="name">
                 {{member.first_name}} {{member.last_name}}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="scorecardApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Scorecard Detail</title>
+</head>
+<body>
+
+<link rel="stylesheet" href="js/bower_components/angular-loading-bar/build/loading-bar.min.css"/>
+
+<!-- JS Scripts -->
+<script src="js/bower_components/angular/angular.min.js"></script>
+<script src="js/bower_components/angular-route/angular-route.min.js"></script>
+<script src="js/bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="js/bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/app.js"></script>
+
+<div ng-controller="congressMemberController">
+    <!-- @todo: load member id as hidden div, grab value with js and place in filter? -->
+    <div class="member" ng-repeat="member in members | filter:{id:'A000055'}">
+        <div class="name">
+            {{member.first_name}} {{member.last_name}}
+        </div>
+        <div ng-if="chamber == member.district">
+            Senate
+        </div>
+        <div ng-if="chamber != member.district">
+            House
+        </div>
+        <div class="state">
+            {{member.state}}<span ng-if="member.district"> Congressional District {{member.district}}</span>
+        </div>
+        <div class="social-media">
+            <a ng-if="member.facebook_account" href="https://www.facebook.com/{{member.facebook_account}}"
+               target="_blank">Facebook</a>
+            <br>
+            <a ng-if="member.twitter_account" href="https://twitter.com/{{member.twitter_account}}" target="_blank">Twitter</a>
+        </div>
+    </div>
+</div>
+
+<div ng-controller="votesController">
+    <div class="bill" ng-repeat="bill in bills">
+        {{bill.node.name}}
+        <div class="vote" ng-repeat="vote in votes | filter:{member_id:'A000055'}">
+            <div class="vote-against" ng-show="vote.vote_position == 'No'">Wrong Member Vote!</div>
+            <div class="vote-for" ng-show="vote.vote_position == 'Yes'">Correct Member Vote!</div>
+        </div>
+        <div class="vote-against" ng-show="bill.node.chamber_position == 'against'">Wrong Chamber Vote!</div>
+        <div class="vote-for" ng-show="bill.node.chamber_position == 'for'">Correct Chamer Vote!</div>
+    </div>
+</div>
+
+</body>
+</html>

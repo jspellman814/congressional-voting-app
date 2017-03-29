@@ -1,0 +1,28 @@
+{
+  "nodes" : [
+    {
+      "node" : {
+        "name" : "Energy Policy Modernization Act of 2015",
+        "number" : "S 2012",
+        "description" : "",
+        "congress" : "114",
+        "session" : "2",
+        "roll_call" : "17",
+        "chamber" : "Senate",
+        "chamber_position" : "against"
+      }
+    },
+    {
+      "node" : {
+        "name" : "National Defense Authorization Act for Fiscal Year 2017",
+        "number" : "S 2943",
+        "description" : "Bill description\n",
+        "congress" : "114",
+        "session" : "2",
+        "roll_call" : "159",
+        "chamber" : "Senate",
+        "chamber_position" : "for"
+      }
+    }
+  ]
+}

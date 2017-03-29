@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html ng-app="scorecardApp">
+<head>
+    <title>Congressional Scorecard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+</head>
+<body>
+
+<style type="text/css">
+    .member {
+        border: 1px solid;
+        margin-bottom: 10px;
+    }
+    .member > a {
+        display: block;
+    }
+    .member > a > span {
+        display: block;
+    }
+
+    .member.ng-enter {
+        transition: 1s linear all;
+        opacity: 0;
+    }
+
+    .member.ng-enter-stagger {
+        transition-delay: 0.1s;
+        transition-duration: 0s;
+    }
+
+    .member.ng-enter.ng-enter-active {
+        opacity: 1;
+    }
+</style>
+
+<link rel="stylesheet" href="js/bower_components/angular-loading-bar/build/loading-bar.min.css"/>
+
+<!-- JS Scripts -->
+<script src="js/bower_components/angular/angular.min.js"></script>
+<script src="js/bower_components/angular-bindonce/bindonce.min.js"></script>
+<script src="js/bower_components/angular-route/angular-route.min.js"></script>
+<script src="js/bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="js/bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/app.js"></script>
+
+<div ng-controller="congressMemberController">
+    <div class="member" ng-repeat="member in members | filter:memberID">
+        <!-- problem with ng repeats, could be with if statement, 587 loops PER member div -->
+        <a ng-if="score.node.member_id === member.id" ng-repeat="score in scorecards" href="{{score.node.url}}">
+            <span class="name">
+                {{member.first_name}} {{member.last_name}}
+            </span>
+            <!-- house/senate filter use itemembers.district
+             if item has district, it is in the house, if not, senate -->
+            <span ng-if="chamber == member.district">
+                Senate
+            </span>
+            <span ng-if="chamber != member.district">
+                House
+            </span>
+            <span class="state">
+                {{member.state}}<span ng-if="member.district">-{{member.district}}</span>
+            </span>
+            <span class="party">
+                {{member.party}}
+            </span>
+            <span class="scores" ng-if="score.node.member_id === members.id">
+                <span class="annual">
+                    {{score.node.annual_score}}
+                </span>
+                <span class="cumulative">
+                    {{score.node.cumulative_score}}
+                </span>
+            </span>
+        </a>
+    </div>
+</div>
+
+</body>
+</html>

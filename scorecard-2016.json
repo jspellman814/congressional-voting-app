@@ -1,0 +1,24 @@
+{
+  "nodes": [
+    {
+      "node": {
+        "member_id": "L000397",
+        "congress": "114",
+        "session": "2",
+        "annual_score": "",
+        "cumulative_score": "",
+        "url": "/"
+      }
+    },
+    {
+      "node": {
+        "member_id": "A000055",
+        "congress": "114",
+        "session": "2",
+        "annual_score": "",
+        "cumulative_score": "",
+        "url": "/"
+      }
+    }
+  ]
+}
